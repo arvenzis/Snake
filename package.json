@@ -1,0 +1,23 @@
+{
+  "name": "snake",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jasmine": "^3.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvenzis/Snake.git"
+  },
+  "author": "Karen Brakband",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arvenzis/Snake/issues"
+  },
+  "homepage": "https://github.com/arvenzis/Snake#readme"
+}
