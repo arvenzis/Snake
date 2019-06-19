@@ -13,7 +13,6 @@ const uglify = require('gulp-uglifyjs');
 let jsFiles = './assets/js/*.js';
 function js(){
     return src(jsFiles)
-        .pipe(order(jsFiles, { base: './' }))
         .pipe(concat('app.js'))
         // .pipe(babel({
         //     presets: ["@babel/preset-env"]
