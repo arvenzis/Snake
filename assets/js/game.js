@@ -21,7 +21,7 @@ let game = (function() {
             }
         }
 
-        return gameFieldArray;
+        return gameFieldsArray;
     });
 
     let drawGameBoard = (function(gameFieldsArray) {
