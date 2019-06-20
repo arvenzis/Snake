@@ -1,9 +1,17 @@
 .game {
   &__container {
+    display: grid;
+    grid-template-columns: repeat(30, 1fr);
     width: 600px;
     height: 400px;
     background-color: black;
     margin: 0 auto;
     border: 10px solid #00006e;
+  }
+
+  &__tile {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #710009;
   }
 }
