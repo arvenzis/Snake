@@ -12,7 +12,8 @@
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            game.buildGameFieldArray();
+            let gameFieldsArray = game.buildGameBoard();
+            game.drawGameBoard(gameFieldsArray);
         });
     </script>
 </html>

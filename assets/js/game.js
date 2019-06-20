@@ -3,35 +3,35 @@ let game = (function() {
     let verticalSize = 400;
     let gridSize = 20;
 
-    let buildGameFieldArray = (function() {
+    let buildGameBoard = (function() {
         let verticalIterations = verticalSize / gridSize;
         let horizontalIterations = horizontalSize / gridSize;
 
-        let gameFieldArray = [];
+        let gameFieldsArray = [];
         for (let i = 0; i < horizontalIterations ; i++) {
-            if(!gameFieldArray[i]) {
-                gameFieldArray[i] = [];
+            if(!gameFieldsArray[i]) {
+                gameFieldsArray[i] = [];
             }
             for (let j = 0; j < verticalIterations ; j++) {
                 if (i === 10 && j === 8) {
-                    gameFieldArray[i][j] = 'snake';
+                    gameFieldsArray[i][j] = 'snake';
                 } else {
-                    gameFieldArray[i][j] = null;
+                    gameFieldsArray[i][j] = null;
                 }
             }
         }
 
-        drawGameField(gameFieldArray);
+        return gameFieldArray;
     });
 
-    let drawGameField = (function(gameFieldArray) {
-        for (let i = 0; i < gameFieldArray.length ; i++) {
-            for (let j = 0; j < gameFieldArray[1].length ; j++) {
-                if (gameFieldArray[i][j] === null) {
+    let drawGameBoard = (function(gameFieldsArray) {
+        for (let i = 0; i < gameFieldsArray.length ; i++) {
+            for (let j = 0; j < gameFieldsArray[1].length ; j++) {
+                if (gameFieldsArray[i][j] === null) {
                     let emptyTile = createGameElement('game__tile', i.toString(), j.toString());
                     $(emptyTile).appendTo('.game__container');
                 }
-                if (gameFieldArray[i][j] === 'snake') {
+                if (gameFieldsArray[i][j] === 'snake') {
                     let snake = createGameElement('snake', i.toString(), j.toString());
                     $(snake).appendTo('.game__container');
                 }
@@ -49,6 +49,7 @@ let game = (function() {
     });
 
     return {
-        buildGameFieldArray: buildGameFieldArray
+        buildGameBoard: buildGameBoard,
+        drawGameBoard: drawGameBoard
     }
 })();
