@@ -4,26 +4,26 @@ let game = (function() {
     let gridSize = 20;
 
     let buildGameBoard = (function() {
-        let verticalIterations = verticalSize / gridSize;
-        let horizontalIterations = horizontalSize / gridSize;
+        let verticalRows = verticalSize / gridSize;
+        let horizontalRows = horizontalSize / gridSize;
 
         let targetH = decideTargetLocation(30);
         let targetV = decideTargetLocation(20);
 
         let gameFieldsArray = [];
-        for (let i = 0; i < horizontalIterations ; i++) {
-            if(!gameFieldsArray[i]) {
-                gameFieldsArray[i] = [];
+        for (let h = 0; h < horizontalRows; h++) {
+            if(!gameFieldsArray[h]) {
+                gameFieldsArray[h] = [];
             }
-            for (let j = 0; j < verticalIterations ; j++) {
-                if (i === 15 && j === 15) {
-                    gameFieldsArray[i][j] = 'snake';
+            for (let v = 0; v < verticalRows; v++) {
+                if (h === 15 && v === 15) {
+                    gameFieldsArray[h][v] = 'snake';
                 } else {
-                    gameFieldsArray[i][j] = null;
+                    gameFieldsArray[h][v] = null;
                 }
 
-                if (i === targetH && j === targetV) {
-                    gameFieldsArray[i][j] = 'target';
+                if (h === targetH && v === targetV) {
+                    gameFieldsArray[h][v] = 'target';
                 }
             }
         }
@@ -32,19 +32,19 @@ let game = (function() {
     });
 
     let drawGameBoard = (function(gameFieldsArray) {
-        for (let i = 0; i < gameFieldsArray.length ; i++) {
-            for (let j = 0; j < gameFieldsArray[1].length ; j++) {
-                switch(gameFieldsArray[i][j]) {
+        for (let h = 0; h < gameFieldsArray.length; h++) {
+            for (let v = 0; v < gameFieldsArray[1].length; v++) {
+                switch(gameFieldsArray[h][v]) {
                     case null:
-                        let emptyTile = createGameElement('game__tile', i.toString(), j.toString());
+                        let emptyTile = createGameElement('game__tile', h.toString(), v.toString());
                         $(emptyTile).appendTo('.game__container');
                         break;
                     case 'snake':
-                        let snake = createGameElement('snake', i.toString(), j.toString());
+                        let snake = createGameElement('snake', h.toString(), v.toString());
                         $(snake).appendTo('.game__container');
                         break;
                     case 'target':
-                        let target = createGameElement('target', i.toString(), j.toString());
+                        let target = createGameElement('target', h.toString(), v.toString());
                         $(target).appendTo('.game__container');
                         break;
                 }
