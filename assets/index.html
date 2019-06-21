@@ -12,8 +12,29 @@
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            let gameFieldsArray = game.buildGameBoard();
-            game.drawGameBoard(gameFieldsArray);
+            var gameFieldsArray = [];
+            setInterval(function() {
+                $('.game__container').empty();
+                gameFieldsArray = game.buildGameBoard();
+                game.drawGameBoard(gameFieldsArray);
+            }, 300);
+
+            $(document).on("keydown", function (e) {
+                if (e.keyCode == '38') {
+                    game.Move.init('up', gameFieldsArray);
+                }
+                else if (e.keyCode == '40') {
+                    game.Move.init('down', gameFieldsArray);
+                }
+                else if (e.keyCode == '37') {
+                    game.Move.init('left', gameFieldsArray);
+                }
+                else if (e.keyCode == '39') {
+                    game.Move.init('right', gameFieldsArray);
+                }
+            });
         });
+
+
     </script>
 </html>

@@ -7,9 +7,6 @@ let game = (function() {
         let verticalRows = verticalSize / gridSize;
         let horizontalRows = horizontalSize / gridSize;
 
-        let targetH = decideTargetLocation(30);
-        let targetV = decideTargetLocation(20);
-
         let gameFieldsArray = [];
         for (let h = 0; h < horizontalRows; h++) {
             if(!gameFieldsArray[h]) {
@@ -65,6 +62,9 @@ let game = (function() {
         let num = Math.floor(Math.random() * max) + 1;
         return (num === 15) ? decideTargetLocation(max) : num;
     });
+
+    let targetH = decideTargetLocation(30);
+    let targetV = decideTargetLocation(20);
 
     return {
         buildGameBoard: buildGameBoard,
