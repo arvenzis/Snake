@@ -3,7 +3,7 @@ let game = (function() {
     let verticalSize = 400;
     let gridSize = 20;
 
-    let buildGameBoard = (function() {
+    let buildGameBoard = (function(snakeH = 15, snakeV = 15) {
         let verticalRows = verticalSize / gridSize;
         let horizontalRows = horizontalSize / gridSize;
 
@@ -13,7 +13,7 @@ let game = (function() {
                 gameFieldsArray[h] = [];
             }
             for (let v = 0; v < verticalRows; v++) {
-                if (h === 15 && v === 15) {
+                if (h === snakeH && v === snakeV) {
                     gameFieldsArray[h][v] = 'snake';
                 } else {
                     gameFieldsArray[h][v] = null;

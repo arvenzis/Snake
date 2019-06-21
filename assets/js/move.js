@@ -1,9 +1,19 @@
 game.Move = (function() {
-    let init = (function(direction, gameFieldsArray) {
-        console.log(gameFieldsArray);
+    let getNewPosition = (function(direction) {
+        let snakePositionH = parseInt($('.snake').attr('data-h'));
+        let snakePositionV = parseInt($('.snake').attr('data-v'));
+
+        if (direction === 'left') {
+            snakePositionH = snakePositionH - 1;
+            return {
+                snakePositionH: snakePositionH,
+                snakePositionV: snakePositionV
+            }
+        }
+
     });
 
     return {
-        init: init
+        getNewPosition: getNewPosition
     }
 })();

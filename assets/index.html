@@ -12,25 +12,27 @@
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            var gameFieldsArray = [];
+            let gameFieldsArray = game.buildGameBoard();
+            console.log(gameFieldsArray);
             setInterval(function() {
                 $('.game__container').empty();
-                gameFieldsArray = game.buildGameBoard();
                 game.drawGameBoard(gameFieldsArray);
             }, 300);
 
             $(document).on("keydown", function (e) {
                 if (e.keyCode == '38') {
-                    game.Move.init('up', gameFieldsArray);
+                    game.Move.getNewPosition('up');
                 }
                 else if (e.keyCode == '40') {
-                    game.Move.init('down', gameFieldsArray);
+                    game.Move.getNewPosition('down');
                 }
                 else if (e.keyCode == '37') {
-                    game.Move.init('left', gameFieldsArray);
+                    let newPosition = game.Move.getNewPosition('left');
+                    gameFieldsArray = game.buildGameBoard(newPosition.snakePositionH, newPosition.snakePositionV);
+                    console.log(gameFieldsArray);
                 }
                 else if (e.keyCode == '39') {
-                    game.Move.init('right', gameFieldsArray);
+                    game.Move.getNewPosition('right');
                 }
             });
         });
