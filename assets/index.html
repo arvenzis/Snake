@@ -13,7 +13,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             let gameFieldsArray = game.buildGameBoard();
-            console.log(gameFieldsArray);
+
             setInterval(function() {
                 $('.game__container').empty();
                 game.drawGameBoard(gameFieldsArray);

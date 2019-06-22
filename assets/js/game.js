@@ -8,11 +8,11 @@ let game = (function() {
         let horizontalRows = horizontalSize / gridSize;
 
         let gameFieldsArray = [];
-        for (let v = 0; v < horizontalRows; v++) {
+        for (let v = 0; v < verticalRows; v++) {
             if(!gameFieldsArray[v]) {
                 gameFieldsArray[v] = [];
             }
-            for (let h = 0; h < verticalRows; h++) {
+            for (let h = 0; h < horizontalRows; h++) {
                 if (h === snakeH && v === snakeV) {
                     gameFieldsArray[v][h] = 'snake';
                 } else {
