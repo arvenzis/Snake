@@ -8,19 +8,19 @@ let game = (function() {
         let horizontalRows = horizontalSize / gridSize;
 
         let gameFieldsArray = [];
-        for (let h = 0; h < horizontalRows; h++) {
-            if(!gameFieldsArray[h]) {
-                gameFieldsArray[h] = [];
+        for (let v = 0; v < horizontalRows; v++) {
+            if(!gameFieldsArray[v]) {
+                gameFieldsArray[v] = [];
             }
-            for (let v = 0; v < verticalRows; v++) {
+            for (let h = 0; h < verticalRows; h++) {
                 if (h === snakeH && v === snakeV) {
-                    gameFieldsArray[h][v] = 'snake';
+                    gameFieldsArray[v][h] = 'snake';
                 } else {
-                    gameFieldsArray[h][v] = null;
+                    gameFieldsArray[v][h] = null;
                 }
 
                 if (h === targetH && v === targetV) {
-                    gameFieldsArray[h][v] = 'target';
+                    gameFieldsArray[v][h] = 'target';
                 }
             }
         }
@@ -29,9 +29,9 @@ let game = (function() {
     });
 
     let drawGameBoard = (function(gameFieldsArray) {
-        for (let h = 0; h < gameFieldsArray.length; h++) {
-            for (let v = 0; v < gameFieldsArray[1].length; v++) {
-                switch(gameFieldsArray[h][v]) {
+        for (let v = 0; v < gameFieldsArray.length; v++) {
+            for (let h = 0; h < gameFieldsArray[v].length; h++) {
+                switch(gameFieldsArray[v][h]) {
                     case null:
                         let emptyTile = createGameElement('game__tile', h.toString(), v.toString());
                         $(emptyTile).appendTo('.game__container');
