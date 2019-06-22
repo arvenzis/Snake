@@ -20,20 +20,21 @@
             }, 300);
 
             $(document).on("keydown", function (e) {
+                let newPosition;
                 if (e.keyCode == '38') {
-                    game.Move.getNewPosition('up');
+                    newPosition = game.Move.getNewPosition('up');
                 }
                 else if (e.keyCode == '40') {
-                    game.Move.getNewPosition('down');
+                    newPosition = game.Move.getNewPosition('down');
                 }
                 else if (e.keyCode == '37') {
-                    let newPosition = game.Move.getNewPosition('left');
-                    gameFieldsArray = game.buildGameBoard(newPosition.snakePositionH, newPosition.snakePositionV);
-                    console.log(gameFieldsArray);
+                    newPosition = game.Move.getNewPosition('left');
                 }
                 else if (e.keyCode == '39') {
-                    game.Move.getNewPosition('right');
+                    newPosition = game.Move.getNewPosition('right');
                 }
+
+                gameFieldsArray = game.buildGameBoard(newPosition.snakePositionH, newPosition.snakePositionV);
             });
         });
 
