@@ -13,14 +13,17 @@ let game = (function() {
                 gameFieldsArray[v] = [];
             }
             for (let h = 0; h < horizontalRows; h++) {
-                if (h === snakeH && v === snakeV) {
-                    gameFieldsArray[v][h] = 'snake';
-                } else {
-                    gameFieldsArray[v][h] = null;
+                if ((h === snakeH && v === snakeV) &&
+                    (h === targetH && v === targetV)) {
+                    console.log("Collision");
                 }
 
-                if (h === targetH && v === targetV) {
+                if (h === snakeH && v === snakeV) {
+                    gameFieldsArray[v][h] = 'snake';
+                } else if (h === targetH && v === targetV) {
                     gameFieldsArray[v][h] = 'target';
+                } else {
+                    gameFieldsArray[v][h] = null;
                 }
             }
         }
@@ -29,6 +32,8 @@ let game = (function() {
     });
 
     let drawGameBoard = (function(gameFieldsArray) {
+        $('.game__container').empty();
+
         for (let v = 0; v < gameFieldsArray.length; v++) {
             for (let h = 0; h < gameFieldsArray[v].length; h++) {
                 switch(gameFieldsArray[v][h]) {
@@ -47,6 +52,10 @@ let game = (function() {
                 }
             }
         }
+    });
+
+    let drawScoreBoard = (function() {
+
     });
 
     let createGameElement = (function(classValue, dataH, dataV) {
@@ -68,6 +77,7 @@ let game = (function() {
 
     return {
         buildGameBoard: buildGameBoard,
-        drawGameBoard: drawGameBoard
+        drawGameBoard: drawGameBoard,
+        drawScoreBoard: drawScoreBoard
     }
 })();

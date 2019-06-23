@@ -5,39 +5,42 @@
             src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
 </head>
     <body>
         <div class="game__container"></div>
     </body>
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="templates.js"></script>
+    <script type="text/javascript" src="libraries.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             let gameFieldsArray = game.buildGameBoard();
 
             setInterval(function() {
-                $('.game__container').empty();
                 game.drawGameBoard(gameFieldsArray);
-            }, 300);
+                game.drawScoreBoard();
+            }, 150);
 
             $(document).on("keydown", function (e) {
                 let newPosition;
-                if (e.keyCode == '38') {
-                    newPosition = game.Move.getNewPosition('up');
-                }
-                else if (e.keyCode == '40') {
-                    newPosition = game.Move.getNewPosition('down');
-                }
-                else if (e.keyCode == '37') {
+                if (e.keyCode == '37') {
                     newPosition = game.Move.getNewPosition('left');
+                }
+                else if (e.keyCode == '38') {
+                    newPosition = game.Move.getNewPosition('up');
                 }
                 else if (e.keyCode == '39') {
                     newPosition = game.Move.getNewPosition('right');
                 }
+                else if (e.keyCode == '40') {
+                    newPosition = game.Move.getNewPosition('down');
+                }
 
-                gameFieldsArray = game.buildGameBoard(newPosition.snakePositionH, newPosition.snakePositionV);
+                if (newPosition !== undefined) {
+                    gameFieldsArray = game.buildGameBoard(newPosition.snakePositionH, newPosition.snakePositionV);
+                }
             });
         });
-
-
     </script>
 </html>
