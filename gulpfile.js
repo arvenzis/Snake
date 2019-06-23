@@ -70,11 +70,13 @@ let libraryFiles = './assets/js/libraries/*.js';
 function libraries(){
     return src(libraryFiles)
         .pipe(concat('libraries.js'))
-        // .pipe(babel({
-        //     presets: ["@babel/preset-env"]
-        // }))
-        // .pipe(uglify(js_files))
         .pipe(gulp.dest('./dist'));
+}
+
+let fontFiles = './assets/fonts/*.{TTF,ttf,woff,eof,svg}';
+function copyFonts(){
+    return src(fontFiles)
+        .pipe(gulp.dest('./dist/fonts'));
 }
 
 function watch() {
@@ -83,7 +85,8 @@ function watch() {
     gulp.watch(jsFiles, js);
     gulp.watch(hbsFiles, hbs);
     gulp.watch(libraryFiles, libraries);
+    gulp.watch(fontFiles, copyFonts);
 }
 
 exports.watch = watch;
-exports.build = parallel(html, scss, js, hbs, libraries);
+exports.build = parallel(html, scss, js, hbs, libraries, copyFonts);

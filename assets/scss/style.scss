@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'ArcadeClassic';
+  src: url('./fonts/ARCADECLASSIC.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+body {
+  font-family: 'ArcadeClassic', sans-serif;
+}
+
 @import "game";
 @import "opponent";
 @import "snake";
