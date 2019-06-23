@@ -15,7 +15,9 @@ let game = (function() {
             for (let h = 0; h < horizontalRows; h++) {
                 if ((h === snakeH && v === snakeV) &&
                     (h === targetH && v === targetV)) {
-                    console.log("Collision");
+                    game.Score.addPoint();
+                    $('.score').remove();
+                    $('body').prepend(Snake.assets.templates.score({score: game.Score.getTotalScore}));
                 }
 
                 if (h === snakeH && v === snakeV) {
@@ -54,10 +56,6 @@ let game = (function() {
         }
     });
 
-    let drawScoreBoard = (function() {
-
-    });
-
     let createGameElement = (function(classValue, dataH, dataV) {
         let element = document.createElement('div');
         element.setAttribute('class', classValue);
@@ -77,7 +75,6 @@ let game = (function() {
 
     return {
         buildGameBoard: buildGameBoard,
-        drawGameBoard: drawGameBoard,
-        drawScoreBoard: drawScoreBoard
+        drawGameBoard: drawGameBoard
     }
 })();

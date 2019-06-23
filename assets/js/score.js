@@ -1,11 +1,8 @@
 game.Score = (function() {
-    let _totalScore;
-    let Score = (function(score) {
-        _totalScore = score;
-    });
+    let _totalScore = 0;
 
     let addPoint = (function() {
-        _totalScore =+ 1;
+        _totalScore = _totalScore + 1;
     });
 
     let getTotalScore = (function() {
@@ -13,7 +10,6 @@ game.Score = (function() {
     });
 
     return {
-        Score: Score,
         addPoint: addPoint,
         getTotalScore: getTotalScore
     }
