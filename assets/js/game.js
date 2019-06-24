@@ -3,6 +3,13 @@ let game = (function() {
     let verticalSize = 400;
     let gridSize = 20;
 
+    let _targetH;
+    let _targetV;
+
+    let Game = (function() {
+       setTargetLocation();
+    });
+
     let buildGameBoard = (function(snakeH = 15, snakeV = 15) {
         let verticalRows = verticalSize / gridSize;
         let horizontalRows = horizontalSize / gridSize;
@@ -14,15 +21,16 @@ let game = (function() {
             }
             for (let h = 0; h < horizontalRows; h++) {
                 if ((h === snakeH && v === snakeV) &&
-                    (h === targetH && v === targetV)) {
+                    (h === _targetH && v === _targetV)) {
                     game.Score.addPoint();
                     $('.score').remove();
-                    $('body').prepend(Snake.assets.templates.score({score: game.Score.getTotalScore}));
+                    setTargetLocation();
+                    $('body').prepend(Snake.assets.templates.score({score: game.Score.getTotalScore})); //this can better
                 }
 
                 if (h === snakeH && v === snakeV) {
                     gameFieldsArray[v][h] = 'snake';
-                } else if (h === targetH && v === targetV) {
+                } else if (h === _targetH && v === _targetV) {
                     gameFieldsArray[v][h] = 'target';
                 } else {
                     gameFieldsArray[v][h] = null;
@@ -70,10 +78,13 @@ let game = (function() {
         return (num === 15) ? decideTargetLocation(max) : num;
     });
 
-    let targetH = decideTargetLocation(30);
-    let targetV = decideTargetLocation(20);
+    let setTargetLocation = (function() {
+        _targetH = decideTargetLocation(30);
+        _targetV = decideTargetLocation(20);
+    });
 
     return {
+        Game: Game,
         buildGameBoard: buildGameBoard,
         drawGameBoard: drawGameBoard
     }
