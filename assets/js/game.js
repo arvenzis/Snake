@@ -7,6 +7,7 @@ let game = (function() {
     let _targetV;
 
     let Game = (function() {
+        game.Handlebars.setScore();
        setTargetLocation();
     });
 
@@ -24,8 +25,8 @@ let game = (function() {
                     (h === _targetH && v === _targetV)) {
                     game.Score.addPoint();
                     $('.score').remove();
+                    game.Handlebars.setScore();
                     setTargetLocation();
-                    $('body').prepend(Snake.assets.templates.score({score: game.Score.getTotalScore})); //this can better
                 }
 
                 if (h === snakeH && v === snakeV) {
